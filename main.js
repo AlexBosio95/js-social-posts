@@ -8,7 +8,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=15"
         },
         "likes": 80,
-        "is_liked" : true,
+        "is_liked": true,
         "created": "2022-06-25"
     },
     {
@@ -20,7 +20,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=10"
         },
         "likes": 120,
-        "is_liked" : false,
+        "is_liked": false,
         "created": "2022-06-03"
     },
     {
@@ -32,7 +32,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=20"
         },
         "likes": 78,
-        "is_liked" : true,
+        "is_liked": true,
         "created": "2022-05-15"
     },
     {
@@ -44,7 +44,7 @@ const posts = [
             "image": null
         },
         "likes": 56,
-        "is_liked" : false,
+        "is_liked": false,
         "created": "2022-04-03"
     },
     {
@@ -56,7 +56,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=29"
         },
         "likes": 95,
-         "is_liked" : false,
+        "is_liked": false,
         "created": "2022-03-05"
     },
     {
@@ -68,7 +68,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=33"
         },
         "likes": 95,
-         "is_liked" : true,
+        "is_liked": true,
         "created": "2022-02-02"
     },
     {
@@ -80,7 +80,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=59"
         },
         "likes": 95,
-         "is_liked" : false,
+        "is_liked": false,
         "created": "2022-02-01"
     },
     {
@@ -92,12 +92,14 @@ const posts = [
             "image": "null"
         },
         "likes": 95,
-         "is_liked" : true,
+        "is_liked": true,
         "created": "2021-12-11"
     }
 ];
 
+
 const parentPost = document.getElementById('container');
+
 
 posts.forEach((element) => {
 
@@ -124,7 +126,7 @@ posts.forEach((element) => {
     <div class="post__footer">
         <div class="likes js-likes">
             <div class="likes__cta">
-                <a class="like-button  js-like-button" href="#" data-postid="1">
+                <a class="like-button js-like-button" href="#" data-postid="1" id="btn-like">
                     <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                     <span class="like-button__label">Mi Piace</span>
                 </a>
@@ -136,7 +138,45 @@ posts.forEach((element) => {
     </div>
 </div>`;
 
-console.log(element.author.name)
+
 
 });
+
+
+
+const listBtnLike = document.querySelectorAll('#container .post__footer a')
+const btnLike = document.getElementById('btn-like');
+
+// Bottoni like cambio colore
+
+for (let i = 0; i < posts.length; i++) {
+    listBtnLike[i].addEventListener('click', function () {
+        console.log('click')
+        
+        if (listBtnLike[i].classList.contains('like-button--liked')){
+            listBtnLike[i].classList.remove('like-button--liked');
+        } else {
+            listBtnLike[i].classList.add('like-button--liked');
+        }
+    })
+}
+
+console.log(listBtnLike)
+
+// Inizializzazione like da array 
+
+for (let i = 0; i < posts.length; i++) {
+
+    if (posts[i].is_liked == true) {
+        listBtnLike[i].classList.add('like-button--liked');
+    }
+
+}
+
+
+
+
+
+
+
 
