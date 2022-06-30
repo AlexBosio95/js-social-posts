@@ -89,7 +89,7 @@ const posts = [
         "media": "https://unsplash.it/600/400?image=554",
         "author": {
             "name": "Mario Di Nio",
-            "image": "null"
+            "image": null
         },
         "likes": 95,
         "is_liked": true,
@@ -102,6 +102,10 @@ const parentPost = document.getElementById('container');
 
 
 posts.forEach((element) => {
+
+    if (element.is_liked) {
+        element.likes++;
+    }
 
     // const { id, content, media, author, likes, is_liked, created } = posts;
 
@@ -126,10 +130,10 @@ posts.forEach((element) => {
     <div class="post__footer">
         <div class="likes js-likes">
             <div class="likes__cta">
-                <a class="like-button js-like-button" href="#" data-postid="1" id="btn-like">
+                <button class="like-button js-like-button" href="#" data-postid="1" id="btn-like">
                     <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                     <span class="like-button__label">Mi Piace</span>
-                </a>
+                </button>
             </div>
             <div class="likes__counter">
                 Piace a <b id="like-counter-1" class="js-likes-counter">${element.likes}</b> persone
@@ -138,20 +142,23 @@ posts.forEach((element) => {
     </div>
 </div>`;
 
+console.log(element.author.image)
 
+// if (element.author.image == null) {
+//     element.author.image = "https://mnapoli.fr/images/posts/null.png"
+// }
 
 });
 
 
-
-const listBtnLike = document.querySelectorAll('#container .post__footer a')
+const listBtnLike = document.querySelectorAll('#container .post__footer button')
 const btnLike = document.getElementById('btn-like');
+
 
 // Bottoni like cambio colore
 
 for (let i = 0; i < posts.length; i++) {
     listBtnLike[i].addEventListener('click', function () {
-        console.log('click')
         
         if (listBtnLike[i].classList.contains('like-button--liked')){
             listBtnLike[i].classList.remove('like-button--liked');
@@ -161,7 +168,6 @@ for (let i = 0; i < posts.length; i++) {
     })
 }
 
-console.log(listBtnLike)
 
 // Inizializzazione like da array 
 
