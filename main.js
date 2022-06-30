@@ -100,22 +100,31 @@ const posts = [
 
 const parentPost = document.getElementById('container');
 
+// Test Destructuring
+// posts.forEach((element) => {
+//     const { id, content, media, author, likes, is_liked, created } = element;
+//     console.log(id, content, media, author, likes, is_liked, created)
+// })
+
 
 posts.forEach((element) => {
 
-    // const { id, content, media, author, likes, is_liked, created } = posts;
 
-    // console.log(id, content, media)
+
+    if (element.author.image == null) {
+        element.author.image = ""
+    }
+    
 
     parentPost.innerHTML += `<div class="post">
     <div class="post__header">
         <div class="post-meta">
             <div class="post-meta__icon">
-                <img class="profile-pic" src="${element.author.image}" alt="${element.author.name}">
+                <img class="profile-pic" src="${element.author.image}" alt="${element.author.name.charAt(0, 1)}">
             </div>
             <div class="post-meta__data">
                 <div class="post-meta__author">${element.author.name}</div>
-                <div class="post-meta__time">${element.created}</div>
+                <div class="post-meta__time">${element.created.split("-").reverse().join("-")}</div>
             </div>
         </div>
     </div>
@@ -138,8 +147,6 @@ posts.forEach((element) => {
     </div>
 </div>`;
 
-console.log(element.author.image)
-
 
 });
 
@@ -149,7 +156,8 @@ const btnLike = document.getElementById('btn-like');
 const bConunterList = document.querySelectorAll('#container .likes__counter b');
 
 
-// Bottoni like cambio colore
+
+// Bottoni like cambio colore e contatore
 for (let i = 0; i < posts.length; i++) {
     listBtnLike[i].addEventListener('click', function () {
         const post = posts[i]
