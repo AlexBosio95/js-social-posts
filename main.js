@@ -103,10 +103,6 @@ const parentPost = document.getElementById('container');
 
 posts.forEach((element) => {
 
-    if (element.is_liked) {
-        element.likes++;
-    }
-
     // const { id, content, media, author, likes, is_liked, created } = posts;
 
     // console.log(id, content, media)
@@ -144,21 +140,32 @@ posts.forEach((element) => {
 
 console.log(element.author.image)
 
-// if (element.author.image == null) {
-//     element.author.image = "https://mnapoli.fr/images/posts/null.png"
-// }
 
 });
 
 
 const listBtnLike = document.querySelectorAll('#container .post__footer button')
 const btnLike = document.getElementById('btn-like');
+const bConunterList = document.querySelectorAll('#container .likes__counter b');
 
 
 // Bottoni like cambio colore
-
 for (let i = 0; i < posts.length; i++) {
     listBtnLike[i].addEventListener('click', function () {
+        const post = posts[i]
+
+        console.log(post.likes)
+        if (post.is_liked) {
+            post.likes--
+            post.is_liked = false
+        }
+        else {
+            post.likes++
+            post.is_liked = true
+        }
+
+        bConunterList[i].innerHTML = post.likes
+        console.log(post.likes)
         
         if (listBtnLike[i].classList.contains('like-button--liked')){
             listBtnLike[i].classList.remove('like-button--liked');
