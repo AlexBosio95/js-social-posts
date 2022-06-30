@@ -105,10 +105,7 @@ posts.forEach((element) => {
 
     // console.log(id, content, media)
 
-    console.log(element.author.name)
-
-    parentPost.innerHTML = `
-    <div class="post">
+    parentPost.innerHTML = `<div class="post">
     <div class="post__header">
         <div class="post-meta">
             <div class="post-meta__icon">
@@ -137,7 +134,9 @@ posts.forEach((element) => {
             </div>
         </div>
     </div>
-</div>`
+</div>`;
+
+console.log(element.author.name)
 
 });
 
